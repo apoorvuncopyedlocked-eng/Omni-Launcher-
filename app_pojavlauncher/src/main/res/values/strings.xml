@@ -197,17 +197,7 @@
     <string name="newdl_downloading_metadata">Downloading metadata %s</string>
     <string name="download_source_default">Default</string>
     <string name="mcl_setting_title_mousescale">Mouse scale</string>
-    <string name="mcl_setting_title_use_surface_view">Use alternate surface rendering</string>
-    <string name="mcl_setting_subtitle_use_surface_view">Can improve performance in GPU-bound scenes.</string>
-    <string name="mcl_setting_title_ignore_notch">Ignore camera cutout</string>
-    <string name="mcl_setting_subtitle_ignore_notch">Ignoring the camera cutout stretches the image underneath it.\nThis provides a better view.</string>
-    <string name="mcl_setting_title_resolution_scaler">Resolution scaling</string>
-    <string name="mcl_setting_subtitle_resolution_scaler">Allows changing the game’s resolution. 100% is full resolution.</string>
-    <string name="mcl_setting_title_buttonscale">Control button size</string>
-    <string name="mcl_setting_title_mousespeed">Mouse speed</string>
-    <string name="mcl_setting_title_javaargs">JVM launch arguments</string>
-    <string name="mcl_setting_subtitle_javaargs">Be careful, this can crash the game if changed without knowledge.</string>
-    <string name="mcl_setting_check_libraries">Check libraries after download</string>
+    <string name="mcl_setting_title_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
     <string name="mcl_setting_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
 
 </resources>
