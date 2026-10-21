@@ -13,11 +13,16 @@
     <string name="login_online_login_label">Log in</string>
 
     <!-- Hint -->
+    <string name="hint_control_mapping">Hint: drag to map controls</string>
 
     <!-- Warnings -->
     <string name="warning_remove_account">This account will be removed!</string>
     <string name="account_corrupted">Account data is corrupt</string>
     <string name="address_memory_warning_msg">The current amount of free RAM (%d) is lower than allocated RAM (%d), which may lead to crashes. Change the allocation if the game crashes.</string>
+    <string name="storage_required">Storage permission is required</string>
+    <string name="toast_not_available_demo">Not available in demo mode</string>
+    <string name="toast_turn_on_gyro">Turn on gyroscope</string>
+    <string name="unnamed">Unnamed</string>
 
     <!-- AlertDialog title -->
     <string name="alerttitle_installmod">Select a mod for installation</string>
@@ -37,6 +42,14 @@
     <string name="arc_capes_title">Cosmetica Capes</string>
     <string name="arc_capes_desc">Enable capes from Cosmetica (formerly Arc). For more info, visit https://cosmetica.cc. Requires OptiFine.</string>
     <string name="mc_download_failed">Minecraft download failed! This can be caused by a bad network connection, files placed incorrectly, etc.</string>
+    <string name="search_modpack_download_error">Failed to download modpack list</string>
+    <string name="search_modpack_error">An error occurred while searching</string>
+    <string name="search_modpack_no_result">No modpacks found</string>
+    <string name="select_bta_version">Select BTA version</string>
+    <string name="profiles_profile_version">Profile version</string>
+    <string name="version_select_hint">Select version</string>
+    <string name="generic_apply">Apply</string>
+    <string name="generic_install">Install</string>
 
     <!-- Toast messages -->
     <string name="toast_permission_denied">Storage read/write permission is required!</string>
@@ -64,6 +77,7 @@
     <string name="mcl_setting_title_javaargs">JVM launch arguments</string>
     <string name="mcl_setting_subtitle_javaargs">Be careful, this can crash the game if changed without knowledge.</string>
     <string name="mcl_setting_check_libraries">Check libraries after download</string>
+    <string name="mcl_setting_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
     <string name="mcl_setting_category_renderer">Renderer</string>
     <string name="mcl_setting_renderer_ng_gl4es">NG-GL4ES</string>
     <string name="mcl_setting_renderer_mobileglues">MobileGlues</string>
@@ -71,6 +85,20 @@
     <string name="mcl_setting_renderer_vulkan_zink">Vulkan (Zink)</string>
     <string name="mcl_setting_renderer_ltw">LTW</string>
     <string name="mcl_version_clone">Clone</string>
+    <string name="mcl_disable_gestures">Disable gestures</string>
+    <string name="mcl_setting_title_longpresstrigger">Long press trigger delay</string>
+    <string name="preference_enable_gyro_title">Enable gyroscope</string>
+    <string name="preference_gyro_invert_x_axis">Invert X axis</string>
+    <string name="preference_gyro_invert_y_axis">Invert Y axis</string>
+    <string name="preference_gyro_sensitivity_title">Gyroscope sensitivity</string>
+    <string name="color_default_hex">#000000</string>
+    <string name="customctrl_passthru">Pass-through</string>
+    <string name="customctrl_swipeable">Swipeable</string>
+    <string name="customctrl_forward_lock">Forward lock</string>
+    <string name="customctrl_absolute_tracking">Absolute tracking</string>
+    <string name="cropper_lock_horizontal">Lock horizontal</string>
+    <string name="cropper_lock_vertical">Lock vertical</string>
+    <string name="cropper_reset">Reset</string>
 
     <!-- Global strings -->
     <string name="global_edit">Edit</string>
@@ -197,7 +225,5 @@
     <string name="newdl_downloading_metadata">Downloading metadata %s</string>
     <string name="download_source_default">Default</string>
     <string name="mcl_setting_title_mousescale">Mouse scale</string>
-    <string name="mcl_setting_title_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
-    <string name="mcl_setting_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
 
 </resources>
