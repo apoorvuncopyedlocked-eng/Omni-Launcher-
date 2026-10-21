@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_menu_home"
         android:title="Home" />
 
     <item
         android:id="@+id/nav_instances"
-        android:icon="@drawable/ic_craft_grid_2"
+        android:icon="@drawable/ic_folder"
         android:title="Instances" />
 
     <item
         android:id="@+id/nav_mods"
-        android:icon="@drawable/ic_menu_mods"
+        android:icon="@drawable/ic_add_modded"
         android:title="Mods" />
 
     <item
         android:id="@+id/nav_servers"
-        android:icon="@drawable/ic_menu_servers"
+        android:icon="@drawable/ic_discord"
         android:title="Servers" />
 
     <item
