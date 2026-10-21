@@ -11,7 +11,6 @@
 
     <!-- Login strings -->
     <string name="login_online_login_label">Log in</string>
-    <string name="login_online_username_hint">Username</string>
 
     <!-- Hint -->
     <string name="hint_control_mapping">Hint: drag to map controls</string>
@@ -24,7 +23,6 @@
     <string name="toast_not_available_demo">Not available in demo mode</string>
     <string name="toast_turn_on_gyro">Turn on gyroscope</string>
     <string name="unnamed">Unnamed</string>
-    <string name="autoram_info_msg">Set RAM to %d MB</string>
 
     <!-- AlertDialog title -->
     <string name="alerttitle_installmod">Select a mod for installation</string>
@@ -73,7 +71,6 @@
     <string name="mcl_setting_title_buttonscale">Control button size</string>
     <string name="mcl_setting_subtitle_buttonscale">Change the size of the on-screen control buttons.</string>
     <string name="mcl_setting_title_mousespeed">Mouse speed</string>
-    <string name="mcl_setting_subtitle_mousescale">Change the virtual mouse size.</string>
     <string name="mcl_setting_title_javaargs">JVM launch arguments</string>
     <string name="mcl_setting_subtitle_javaargs">Be careful, this can crash the game if changed without knowledge.</string>
     <string name="mcl_setting_check_libraries">Check libraries after download</string>
