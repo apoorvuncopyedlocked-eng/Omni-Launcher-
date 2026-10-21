@@ -210,27 +210,4 @@
     <string name="mcl_setting_check_libraries">Check libraries after download</string>
     <string name="mcl_setting_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
 
-    <!-- Additional compatibility strings -->
-    <string name="import_control_label">Import controls</string>
-    <string name="download_source_names">Default</string>
-    <string name="mcl_option_customcontrol">Custom controls</string>
-    <string name="mcl_button_discord">Discord</string>
-    <string name="mcl_button_open_directory">Open game directory</string>
-    <string name="mcl_tab_wiki">Wiki</string>
-    <string name="control_mouse">Mouse</string>
-    <string name="customctrl_addbutton_joystick">Add joystick</string>
-    <string name="customctrl_addbutton_drawer">Add button drawer</string>
-    <string name="global_default">Default</string>
-    <string name="global_load">Load</string>
-    <string name="global_save">Save</string>
-    <string name="customctrl_selectdefault">Select default control map</string>
-    <string name="customctrl_export">Export control map</string>
-    <string name="customctrl_editor_exit">Exit editor</string>
-    <string name="customctrl_addbutton">Add button</string>
-    <string name="customctrl_editor_exit_title">Exit editor?</string>
-    <string name="customctrl_editor_exit_msg">Are you sure you want to exit the custom control editor?</string>
-
-    <string name="import_control_label">Import controls</string>
-    <string name="download_source_names">Default</string>
-    <string name="download_source_default">Default</string>
 </resources>
