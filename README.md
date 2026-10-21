@@ -79,5 +79,5 @@ This project is licensed under **GNU LGPLv3**
 ---
 
 <div align="center">
-Made with 💜 by Apoorv 
+Made with 💜 by Apoorv
 </div>
