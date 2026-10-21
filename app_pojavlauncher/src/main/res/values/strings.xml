@@ -6,6 +6,8 @@
 
     <!-- Action bar part -->
     <string name="mcl_tab_wiki">Wiki</string>
+    <string name="mcl_button_discord">Discord</string>
+    <string name="mcl_button_open_directory">Open game directory</string>
 
     <!-- Login strings -->
     <string name="login_online_login_label">Log in</string>
@@ -14,6 +16,8 @@
 
     <!-- Warnings -->
     <string name="warning_remove_account">This account will be removed!</string>
+    <string name="account_corrupted">Account data is corrupt</string>
+    <string name="address_memory_warning_msg">The current amount of free RAM (%d) is lower than allocated RAM (%d), which may lead to crashes. Change the allocation if the game crashes.</string>
 
     <!-- AlertDialog title -->
     <string name="alerttitle_installmod">Select a mod for installation</string>
@@ -23,6 +27,16 @@
     <string name="error_no_version">No version!</string>
     <string name="error_show_more">Show more</string>
     <string name="error_show_less">Show less</string>
+    <string name="global_error">Error</string>
+    <string name="global_error_field_empty">This field cannot be empty</string>
+    <string name="xerr_unknown">Unknown Xbox Live API error %d</string>
+    <string name="xerr_no_account">It looks like you do not have an Xbox Live account. Please log in once on https://minecraft.net/ and try again.</string>
+    <string name="xerr_adult_verification">An adult must verify your account.</string>
+    <string name="xerr_child">Your account is a child account and must be added to a Family to log in.</string>
+    <string name="xerr_not_available">This is not available right now.</string>
+    <string name="arc_capes_title">Cosmetica Capes</string>
+    <string name="arc_capes_desc">Enable capes from Cosmetica (formerly Arc). For more info, visit https://cosmetica.cc. Requires OptiFine.</string>
+    <string name="mc_download_failed">Minecraft download failed! This can be caused by a bad network connection, files placed incorrectly, etc.</string>
 
     <!-- Toast messages -->
     <string name="toast_permission_denied">Storage read/write permission is required!</string>
@@ -46,6 +60,177 @@
     <string name="mcl_setting_title_resolution_scaler">Resolution scaling</string>
     <string name="mcl_setting_subtitle_resolution_scaler">Allows changing the game’s resolution. 100% is full resolution.</string>
     <string name="mcl_setting_title_buttonscale">Control button size</string>
+    <string name="mcl_setting_title_mousespeed">Mouse speed</string>
+    <string name="mcl_setting_title_javaargs">JVM launch arguments</string>
+    <string name="mcl_setting_subtitle_javaargs">Be careful, this can crash the game if changed without knowledge.</string>
+    <string name="mcl_setting_check_libraries">Check libraries after download</string>
+    <string name="mcl_setting_category_renderer">Renderer</string>
+    <string name="mcl_setting_renderer_ng_gl4es">NG-GL4ES</string>
+    <string name="mcl_setting_renderer_mobileglues">MobileGlues</string>
+    <string name="mcl_setting_renderer_vulkan_kopper_zink">Vulkan (Kopper Zink)</string>
+    <string name="mcl_setting_renderer_vulkan_zink">Vulkan (Zink)</string>
+    <string name="mcl_setting_renderer_ltw">LTW</string>
+    <string name="mcl_version_clone">Clone</string>
 
-    <string name="import_control_label">Import</string>
+    <!-- Global strings -->
+    <string name="global_edit">Edit</string>
+    <string name="global_load">Load</string>
+    <string name="global_name">Name</string>
+    <string name="global_remove">Remove</string>
+    <string name="global_clone">Clone</string>
+    <string name="global_restart">Restart</string>
+    <string name="global_save">Save</string>
+    <string name="global_unpacking">Unpacking %s</string>
+    <string name="global_waiting">Waiting</string>
+    <string name="global_retry">Retry</string>
+    <string name="global_default">Default</string>
+    <string name="global_delete">Delete</string>
+    <string name="global_yes">Yes</string>
+    <string name="global_no">No</string>
+    <string name="global_select">Select</string>
+    <string name="global_cancel">Cancel</string>
+
+    <!-- MainActivity: strings -->
+    <string name="mcn_exit_title">Application/Game exited with code %d, check latestlog.txt for details.</string>
+    <string name="mcn_signal_title">Application/Game was terminated by signal %d, check latestlog.txt for details.</string>
+    <string name="mcn_exit_confirm">Are you sure you want to force close?</string>
+    <string name="mcn_check_fail_vulkan_support">Zink (Vulkan) renderer is unsupported on this device!</string>
+
+    <!-- MainActivity: Control buttons -->
+    <string name="control_debug">Debug</string>
+    <string name="control_primary">LMB</string>
+    <string name="control_secondary">RMB</string>
+    <string name="control_inventory">INV</string>
+    <string name="control_thirdperson">3RD</string>
+    <string name="control_listplayers">TAB</string>
+    <string name="control_mouse">Mouse</string>
+    <string name="control_mouseoff">Mouse: off</string>
+    <string name="control_mouseon">Mouse: on </string>
+    <string name="control_up">Up</string>
+    <string name="control_left">Left</string>
+    <string name="control_down">Down</string>
+    <string name="control_right">Right</string>
+    <string name="control_jump">Jump</string>
+    <string name="control_shift">Shift</string>
+    <string name="control_chat">Chat</string>
+
+    <!-- MainActivity: Menu advanced controls -->
+    <string name="control_forceclose">Force close</string>
+    <string name="control_viewout">Log output</string>
+    <string name="control_customkey">Send custom keycode</string>
+    <string name="control_adebug">Input debug</string>
+
+    <!-- ImportControlActivity strings -->
+    <string name="import_control_label">Import controls</string>
+    <string name="import_control_invalid_file">Invalid or corrupted file</string>
+    <string name="import_control_import_button">Import controls</string>
+    <string name="import_control_verifying_file">Verifying file, please wait and try again…</string>
+    <string name="import_control_invalid_name">Invalid name or file already exists</string>
+    <string name="import_control_done">Import complete</string>
+
+    <!-- Custom control resources -->
+    <string name="customctrl_toggle">Toggle</string>
+    <string name="customctrl_size">Size</string>
+    <string name="customctrl_mapping">Mapping</string>
+    <string name="customctrl_orientation">Orientation</string>
+    <string name="customctrl_background_color">Background color</string>
+    <string name="customctrl_corner_radius">Corner radius</string>
+    <string name="customctrl_stroke_width">Stroke width</string>
+    <string name="customctrl_stroke_color">Stroke color</string>
+    <string name="customctrl_button_opacity">Button opacity</string>
+    <string name="customctrl_addbutton">Add button</string>
+    <string name="customctrl_addbutton_drawer">Add button drawer</string>
+    <string name="customctrl_addbutton_joystick">Add joystick</string>
+    <string name="customctrl_addsubbutton">Add sub-button</string>
+    <string name="customctrl_selectdefault">Select default control map</string>
+    <string name="customctrl_export">Export control map</string>
+    <string name="customctrl_editor_exit">Exit editor</string>
+    <string name="customctrl_editor_exit_title">Exit editor?</string>
+    <string name="customctrl_editor_exit_msg">Are you sure you want to exit the custom control editor?</string>
+    <string name="customctrl_visibility_title">Visibility</string>
+    <string name="customctrl_visibility_ingame">In-game</string>
+    <string name="customctrl_visibility_in_menus">In menus</string>
+
+    <!-- Misc resources -->
+    <string name="main_share_logs">Share log file</string>
+    <string name="main_install_jar_file">Run a .jar</string>
+    <string name="main_play">Play</string>
+    <string name="main_add_account">Add account</string>
+    <string name="main_login_done">Login complete</string>
+    <string name="notification_terminate">Terminate</string>
+    <string name="notification_game_runs">The game is running!</string>
+    <string name="tasks_ongoing">Tasks are in progress, please wait</string>
+    <string name="no_saved_accounts">No saved accounts</string>
+    <string name="folder_dialog_create">Create</string>
+    <string name="folder_dialog_insert_name">Insert folder name</string>
+    <string name="folder_fragment_create">Create folder</string>
+    <string name="folder_fragment_select">Select folder</string>
+    <string name="default_control">Default control map</string>
+    <string name="use_global_default">(Use global default)</string>
+    <string name="progresslayout_tasks_in_progress">%d tasks in progress</string>
+    <string name="quick_setting_title">Quick settings</string>
+    <string name="pvc_jvmArgs">JVM arguments</string>
+    <string name="pvc_gameDirectory">Game directory</string>
+    <string name="notif_channel_name">General</string>
+    <string name="notif_channel_id">general</string>
+    <string name="preference_experimental_title">Experimental things</string>
+    <string name="preference_renderer_mobileglues_settings">MobileGlues renderer settings</string>
+    <string name="mg_renderer_glsl_cache">Maximum GLSL cache size</string>
+    <string name="mg_renderer_angle">Use ANGLE as the driver</string>
+    <string name="mg_renderer_multidraw">Multidraw emulation mode</string>
+    <string name="mg_renderer_title_errorSetting">Error filtering</string>
+    <string name="mg_renderer_title_timerQueryExt">Disable GPU usage in the F3 menu</string>
+    <string name="mg_renderer_summary_timerQueryExt">Fixes random crashes when opening F3 on some Mali devices</string>
+    <string name="preference_ANGLE_only">ANGLE-specific options</string>
+    <string name="mcl_memory_allocation">Allocated memory</string>
+    <string name="multirt_runtime_corrupt">Corrupt Java runtime</string>
+    <string name="multirt_config_add">Add new</string>
+    <string name="multirt_title">Runtime manager</string>
+    <string name="multirt_progress_caching">Caching...</string>
+    <string name="multirt_config_setdefault">Set default</string>
+    <string name="multirt_config_setdefault_already">Default</string>
+    <string name="of_dl_progress">Downloading %s</string>
+    <string name="newdl_downloading_game_files">Downloading the game...(%d/%d,%.2f MB/s)</string>
+    <string name="newdl_downloading_game_files_size">Downloading the game...(%.2f/%.2f MB, %.2f MB/s)</string>
+    <string name="newdl_extracting_native_libraries">Extracting native libraries (%d/%d)</string>
+    <string name="newdl_downloading_jre_runtime">Downloading Java runtime %s</string>
+    <string name="newdl_downloading_metadata">Downloading metadata %s</string>
+    <string name="download_source_default">Default</string>
+    <string name="mcl_setting_title_mousescale">Mouse scale</string>
+    <string name="mcl_setting_title_use_surface_view">Use alternate surface rendering</string>
+    <string name="mcl_setting_subtitle_use_surface_view">Can improve performance in GPU-bound scenes.</string>
+    <string name="mcl_setting_title_ignore_notch">Ignore camera cutout</string>
+    <string name="mcl_setting_subtitle_ignore_notch">Ignoring the camera cutout stretches the image underneath it.\nThis provides a better view.</string>
+    <string name="mcl_setting_title_resolution_scaler">Resolution scaling</string>
+    <string name="mcl_setting_subtitle_resolution_scaler">Allows changing the game’s resolution. 100% is full resolution.</string>
+    <string name="mcl_setting_title_buttonscale">Control button size</string>
+    <string name="mcl_setting_title_mousespeed">Mouse speed</string>
+    <string name="mcl_setting_title_javaargs">JVM launch arguments</string>
+    <string name="mcl_setting_subtitle_javaargs">Be careful, this can crash the game if changed without knowledge.</string>
+    <string name="mcl_setting_check_libraries">Check libraries after download</string>
+    <string name="mcl_setting_check_libraries_subtitle">This option forces the launcher to verify the library hash when available. Prevents broken downloads.</string>
+
+    <!-- Additional compatibility strings -->
+    <string name="import_control_label">Import controls</string>
+    <string name="download_source_names">Default</string>
+    <string name="mcl_option_customcontrol">Custom controls</string>
+    <string name="mcl_button_discord">Discord</string>
+    <string name="mcl_button_open_directory">Open game directory</string>
+    <string name="mcl_tab_wiki">Wiki</string>
+    <string name="control_mouse">Mouse</string>
+    <string name="customctrl_addbutton_joystick">Add joystick</string>
+    <string name="customctrl_addbutton_drawer">Add button drawer</string>
+    <string name="global_default">Default</string>
+    <string name="global_load">Load</string>
+    <string name="global_save">Save</string>
+    <string name="customctrl_selectdefault">Select default control map</string>
+    <string name="customctrl_export">Export control map</string>
+    <string name="customctrl_editor_exit">Exit editor</string>
+    <string name="customctrl_addbutton">Add button</string>
+    <string name="customctrl_editor_exit_title">Exit editor?</string>
+    <string name="customctrl_editor_exit_msg">Are you sure you want to exit the custom control editor?</string>
+
+    <string name="import_control_label">Import controls</string>
+    <string name="download_source_names">Default</string>
+    <string name="download_source_default">Default</string>
 </resources>
