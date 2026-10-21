@@ -57,10 +57,6 @@
     <string name="toast_permission_denied">Storage read/write permission is required!</string>
     <string name="toast_optifine_success">Installation succeeded</string>
 
-    <!-- MCLauncherActivity: Tabs -->
-
-    <!-- MCLauncherActivity: Account status -->
-
     <!-- MCLauncherActivity: Strings -->
     <string name="mcl_launch_cleancache">Clearing unnecessary files</string>
     <string name="mcl_launch_downloading">Downloading %s</string>
@@ -75,7 +71,9 @@
     <string name="mcl_setting_title_resolution_scaler">Resolution scaling</string>
     <string name="mcl_setting_subtitle_resolution_scaler">Allows changing the game’s resolution. 100% is full resolution.</string>
     <string name="mcl_setting_title_buttonscale">Control button size</string>
+    <string name="mcl_setting_subtitle_buttonscale">Change the size of the on-screen control buttons.</string>
     <string name="mcl_setting_title_mousespeed">Mouse speed</string>
+    <string name="mcl_setting_subtitle_mousescale">Change the virtual mouse size.</string>
     <string name="mcl_setting_title_javaargs">JVM launch arguments</string>
     <string name="mcl_setting_subtitle_javaargs">Be careful, this can crash the game if changed without knowledge.</string>
     <string name="mcl_setting_check_libraries">Check libraries after download</string>
@@ -88,11 +86,28 @@
     <string name="mcl_setting_renderer_ltw">LTW</string>
     <string name="mcl_version_clone">Clone</string>
     <string name="mcl_disable_gestures">Disable gestures</string>
+    <string name="mcl_disable_gestures_subtitle">Disable tap-and-hold actions such as breaking blocks and placing blocks.</string>
+    <string name="mcl_disable_swap_hand">Disable double tap to swap hands</string>
+    <string name="mcl_disable_swap_hand_subtitle">Disable double-tapping on the hotbar item to swap it to the secondary hand.</string>
     <string name="mcl_setting_title_longpresstrigger">Long press trigger delay</string>
+    <string name="mcl_setting_subtitle_longpresstrigger">Set how long the touch trigger must be held before it activates.</string>
+    <string name="mcl_setting_title_buttonallcaps">Button text uppercase</string>
+    <string name="mcl_setting_subtitle_buttonallcaps">Display control button labels in uppercase.</string>
+    <string name="mcl_setting_title_grab_mouse">Virtual cursor</string>
+    <string name="mcl_setting_subtitle_grab_mouse">Keep the cursor inside the game. Prevents mouse clicks from reaching the touch control layout.</string>
+    <string name="mcl_setting_title_keyboard_panning">Keyboard panning</string>
+    <string name="mcl_setting_subtitle_keyboard_panning">Use the keyboard to pan the camera while in-game.</string>
+    <string name="mcl_setting_title_mousescale">Mouse scale</string>
+    <string name="mcl_setting_subtitle_mousescale">Change the virtual mouse scale.</string>
     <string name="preference_enable_gyro_title">Enable gyroscope</string>
     <string name="preference_gyro_invert_x_axis">Invert X axis</string>
     <string name="preference_gyro_invert_y_axis">Invert Y axis</string>
     <string name="preference_gyro_sensitivity_title">Gyroscope sensitivity</string>
+    <string name="preference_edit_controls_title">Edit custom controls</string>
+    <string name="preference_edit_controls_summary">Customize the control system to suit your needs.</string>
+    <string name="preference_category_gestures">Gestures</string>
+    <string name="preference_category_buttons">Buttons</string>
+    <string name="preference_category_virtual_mouse">Virtual mouse</string>
     <string name="color_default_hex">#000000</string>
     <string name="customctrl_passthru">Pass-through</string>
     <string name="customctrl_swipeable">Swipeable</string>
@@ -101,10 +116,12 @@
     <string name="cropper_lock_horizontal">Lock horizontal</string>
     <string name="cropper_lock_vertical">Lock vertical</string>
     <string name="cropper_reset">Reset</string>
-    <string name="mcl_setting_title_grab_mouse">Virtual cursor</string>
-    <string name="mcl_setting_subtitle_grab_mouse">Keep the cursor inside the game. Prevents mouse clicks from reaching the touch control layout.</string>
-    <string name="mcl_setting_title_keyboard_panning">Keyboard panning</string>
-    <string name="mcl_setting_subtitle_keyboard_panning">Use the keyboard to pan the camera while in-game.</string>
+
+    <string name="log_view_button_scroll_off">Auto-scroll\nOff</string>
+    <string name="log_view_button_scroll_on">Auto-scroll\nOn</string>
+    <string name="log_view_button_output_off">Output\nOff</string>
+    <string name="log_view_button_output_on">Output\nOn</string>
+    <string name="log_view_label_log_output">Log output:</string>
 
     <!-- Global strings -->
     <string name="global_edit">Edit</string>
@@ -230,9 +247,22 @@
     <string name="newdl_downloading_jre_runtime">Downloading Java runtime %s</string>
     <string name="newdl_downloading_metadata">Downloading metadata %s</string>
     <string name="download_source_default">Default</string>
-    <string name="mcl_setting_title_mousescale">Mouse scale</string>
 
     <string name="controller_button_select">Select</string>
+    <string name="controller_button_trigger_left">Left trigger</string>
+    <string name="controller_button_trigger_right">Right trigger</string>
+    <string name="controller_button_shoulder_left">Left shoulder</string>
+    <string name="controller_button_shoulder_right">Right shoulder</string>
+    <string name="controller_direction_forward">Stick up</string>
+    <string name="controller_direction_backward">Stick down</string>
+    <string name="controller_direction_left">Stick left</string>
+    <string name="controller_direction_right">Stick right</string>
+    <string name="controller_stick_press_l">Left thumbstick (click)</string>
+    <string name="controller_stick_press_r">Right thumbstick (click)</string>
+    <string name="controller_dpad_up">D-pad up</string>
+    <string name="controller_dpad_down">D-pad down</string>
+    <string name="controller_dpad_left">D-pad left</string>
+    <string name="controller_dpad_right">D-pad right</string>
     <string name="controller_remapper_exit_part1">Hold</string>
     <string name="controller_remapper_exit_part2">to exit</string>
     <string name="controller_remapper_operating_mode">Current mode</string>
