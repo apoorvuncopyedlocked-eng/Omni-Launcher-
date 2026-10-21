@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Control buttons -->
     <color name="control_button_color">#4CC4C4C4</color>
     <color name="control_button_pressed_color">#4D000000</color>
 
-    <color name="minebutton_color">#9649b8</color>
-    <color name="background_app">#181818</color>
+    <!-- Omni Launcher aesthetic palette -->
+    <color name="minebutton_color">#A78BFA</color>
+    <color name="background_app">#0F0F1A</color>
     <color name="divider">@color/background_overlay</color>
-    <color name="background_overlay">#464646</color>
-    <color name="background_status_bar">#242424</color>
-    <color name="background_bottom_bar">#232323</color>
+    <color name="background_overlay">#1E1E2E</color>
+    <color name="background_status_bar">#0F0F1A</color>
+    <color name="background_bottom_bar">#13131F</color>
 
-    <color name="primary_text">#FFFFFF</color>
-    <color name="secondary_text">#B2B2B2</color>
+    <!-- Text -->
+    <color name="primary_text">#F0EEFF</color>
+    <color name="secondary_text">#9D8FBF</color>
+
+    <!-- Bottom nav -->
+    <color name="surface">#13131F</color>
+    <color name="colorAccent">#A78BFA</color>
+    <color name="colorPrimary">#7C5CBF</color>
+    <color name="nav_selected">#A78BFA</color>
+    <color name="nav_unselected">#4A4570</color>
 </resources>
