@@ -29,6 +29,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kdt.mcgui.ProgressLayout;
 import com.kdt.mcgui.mcAccountSpinner;
 
@@ -83,7 +84,6 @@ public class LauncherActivity extends BaseActivity {
                 if(data != null) {
                     PojavApplication.sExecutorService.execute(() -> {
                         try {
-                            // Copy ZIP file to cache
                             long fileSize = -1;
                             try (Cursor returnCursor = getContentResolver().query(data, new String[]{OpenableColumns.SIZE}, null, null, null)) {
                                 if (returnCursor != null && returnCursor.moveToFirst()) {
@@ -119,7 +119,6 @@ public class LauncherActivity extends BaseActivity {
                             ProgressLayout.clearProgress(ProgressLayout.INSTALL_MODPACK);
                         } catch (NoSuchAlgorithmException e) {
                             ProgressLayout.clearProgress(ProgressLayout.INSTALL_MODPACK);
-                            // Should literally never happen because SHA-1 is required Java spec
                             throw new RuntimeException(e);
                         }
                     });
@@ -133,41 +132,27 @@ public class LauncherActivity extends BaseActivity {
     private ProgressServiceKeeper mProgressServiceKeeper;
     private ModloaderInstallTracker mInstallTracker;
     private NotificationManager mNotificationManager;
+    private BottomNavigationView mBottomNavigationView;
 
-    /* Allows to switch from one button "type" to another */
     private final FragmentManager.FragmentLifecycleCallbacks mFragmentCallbackListener = new FragmentManager.FragmentLifecycleCallbacks() {
         @Override
         public void onFragmentResumed(@NonNull FragmentManager fm, @NonNull Fragment f) {
-            mSettingsButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), f instanceof MainMenuFragment
-                    ? R.drawable.ic_menu_settings : R.drawable.ic_menu_home));
+            if (mSettingsButton != null) {
+                mSettingsButton.setVisibility(View.GONE);
+            }
         }
     };
 
-    /* Listener for the back button in settings */
     private final ExtraListener<String> mBackPreferenceListener = (key, value) -> {
         if(value.equals("true")) onBackPressed();
         return false;
     };
 
-    /* Listener for the auth method selection screen */
     private final ExtraListener<Boolean> mSelectAuthMethod = (key, value) -> {
         Fragment fragment = getSupportFragmentManager().findFragmentById(mFragmentView.getId());
-        // Allow starting the add account only from the main menu, should it be moved to fragment itself ?
         if(!(fragment instanceof MainMenuFragment)) return false;
-
         Tools.swapFragment(this, SelectAuthFragment.class, SelectAuthFragment.TAG, null);
         return false;
-    };
-
-    /* Listener for the settings fragment */
-    private final View.OnClickListener mSettingButtonListener = v -> {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(mFragmentView.getId());
-        if(fragment instanceof MainMenuFragment){
-            Tools.swapFragment(this, LauncherPreferenceFragment.class, SETTING_FRAGMENT_TAG, null);
-        } else{
-            // The setting button doubles as a home button now
-            Tools.backToMainMenu(this);
-        }
     };
 
     private final ExtraListener<Boolean> mLaunchGameListener = (key, value) -> {
@@ -193,19 +178,13 @@ public class LauncherActivity extends BaseActivity {
             return false;
         }
 
-        // Override whatever version is in use and replace it with lwjgl3ify if needed
         List<File> lwjgl3ifyJars = getMods("lwjgl3ify-3");
         if (!lwjgl3ifyJars.isEmpty()) {
             if (lwjgl3ifyJars.size() > 1) {
-                // "Duplicate LWJGL3ify jars found, cannot launch."
                 Tools.dialogOnUiThread(this, R.string.global_error, R.string.mc_download_failed);
                 return false;
             }
-
             File lwjgl3ifyJar = lwjgl3ifyJars.get(0);
-
-            // If the version contains lwjgl3ify, its probably someone who knows what they're doing
-            // so lets leave that alone
             if (!prof.lastVersionId.toLowerCase().contains("lwjgl3ify")) {
                 try {
                     prof.lastVersionId = LWJGL3ifyUtils.installJson(lwjgl3ifyJar).id;
@@ -214,11 +193,7 @@ public class LauncherActivity extends BaseActivity {
                 }
                 LauncherProfiles.mainProfileJson.profiles.put(selectedProfile, prof);
                 LauncherProfiles.write();
-
-
             }
-            // We just installed a json, we need internet + online acc to download so we add super
-            // basic detection whether lwjgl3ify assets were downloaded
             try {
                 String jsonPath = LWJGL3ifyUtils.getJsonPath(LWJGL3ifyUtils.getProfileID(lwjgl3ifyJar));
                 File lwjgl3ifyClientJar = new File(jsonPath.replace(".json", ".jar"));
@@ -236,16 +211,13 @@ public class LauncherActivity extends BaseActivity {
         String normalizedVersionId = AsyncMinecraftDownloader.normalizeVersionId(prof.lastVersionId);
         JMinecraftVersionList.Version mcVersion = AsyncMinecraftDownloader.getListedVersion(normalizedVersionId);
 
-        // Do not load when is a modded version or older than minecraft 1.3 on demo account
         if (mAccountSpinner.getSelectedAccount().isDemo()) {
             boolean isOlderThan13 = true;
-
             if (mcVersion != null) {
                 try {
                     isOlderThan13 = DateUtils.dateBefore(DateUtils.parseReleaseDate(mcVersion.releaseTime), 2012, 6, 22);
                 } catch (ParseException ignored) {}
             }
-
             if (isOlderThan13) {
                 hasNoOnlineProfileDialog(this, getString(R.string.global_error), getString(R.string.demo_versions_supported));
                 return false;
@@ -262,8 +234,6 @@ public class LauncherActivity extends BaseActivity {
     };
 
     private final TaskCountListener mDoubleLaunchPreventionListener = taskCount -> {
-        // Hide the notification that starts the game if there are tasks executing.
-        // Prevents the user from trying to launch the game with tasks ongoing.
         if(taskCount > 0) {
             Tools.runOnUiThread(() ->
                     mNotificationManager.cancel(NotificationUtils.NOTIFICATION_ID_GAME_START)
@@ -290,18 +260,14 @@ public class LauncherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pojav_launcher);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        // If we don't have a back stack root yet...
         if(fragmentManager.getBackStackEntryCount() < 1) {
-            // Manually add the first fragment to the backstack to get easily back to it
-            // There must be a better way to handle the root though...
-            // (artDev: No, there is not. I've spent days researching this for another unrelated project.)
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
                     .addToBackStack("ROOT")
                     .add(R.id.container_fragment, MainMenuFragment.class, null, "ROOT").commit();
         }
-
 
         IconCacheJanitor.runJanitor();
         mRequestNotificationPermissionLauncher = registerForActivityResult(
@@ -324,18 +290,18 @@ public class LauncherActivity extends BaseActivity {
                     }
                 }
         );
+
         getWindow().setBackgroundDrawable(null);
         bindViews();
+        setupBottomNavigation();
         checkNotificationPermission();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         ProgressKeeper.addTaskCountListener(mDoubleLaunchPreventionListener);
         ProgressKeeper.addTaskCountListener((mProgressServiceKeeper = new ProgressServiceKeeper(this)));
 
-        mSettingsButton.setOnClickListener(mSettingButtonListener);
         ProgressKeeper.addTaskCountListener(mProgressLayout);
         ExtraCore.addExtraListener(ExtraConstants.BACK_PREFERENCE, mBackPreferenceListener);
         ExtraCore.addExtraListener(ExtraConstants.SELECT_AUTH_METHOD, mSelectAuthMethod);
-
         ExtraCore.addExtraListener(ExtraConstants.LAUNCH_GAME, mLaunchGameListener);
 
         new AsyncVersionList().getVersionList(versions -> ExtraCore.setValue(ExtraConstants.RELEASE_TABLE, versions), false);
@@ -347,6 +313,43 @@ public class LauncherActivity extends BaseActivity {
         mProgressLayout.observe(ProgressLayout.INSTALL_MODPACK);
         mProgressLayout.observe(ProgressLayout.AUTHENTICATE_MICROSOFT);
         mProgressLayout.observe(ProgressLayout.DOWNLOAD_VERSION_LIST);
+    }
+
+    private void setupBottomNavigation() {
+        mBottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                Tools.backToMainMenu(this);
+                return true;
+            } else if (id == R.id.nav_instances) {
+                Tools.swapFragment(this, MainMenuFragment.class, "ROOT", null);
+                return true;
+            } else if (id == R.id.nav_mods) {
+                Tools.swapFragment(this,
+                        net.kdt.pojavlaunch.fragments.ModsFragment.class,
+                        "MODS_FRAGMENT", null);
+                return true;
+            } else if (id == R.id.nav_servers) {
+                Tools.swapFragment(this,
+                        net.kdt.pojavlaunch.fragments.ServersFragment.class,
+                        "SERVERS_FRAGMENT", null);
+                return true;
+            } else if (id == R.id.nav_settings) {
+                Tools.swapFragment(this,
+                        LauncherPreferenceFragment.class,
+                        SETTING_FRAGMENT_TAG, null);
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void bindViews() {
+        mAccountSpinner = findViewById(R.id.account_spinner);
+        mFragmentView = findViewById(R.id.container_fragment);
+        mSettingsButton = findViewById(R.id.setting_button);
+        mProgressLayout = findViewById(R.id.progress_layout);
+        mBottomNavigationView = findViewById(R.id.bottom_navigation);
     }
 
     @Override
@@ -378,11 +381,9 @@ public class LauncherActivity extends BaseActivity {
         ExtraCore.removeExtraListenerFromValue(ExtraConstants.BACK_PREFERENCE, mBackPreferenceListener);
         ExtraCore.removeExtraListenerFromValue(ExtraConstants.SELECT_AUTH_METHOD, mSelectAuthMethod);
         ExtraCore.removeExtraListenerFromValue(ExtraConstants.LAUNCH_GAME, mLaunchGameListener);
-
         getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(mFragmentCallbackListener);
     }
 
-    /** Custom implementation to feel more natural when a backstack isn't present */
     @Override
     public void onBackPressed() {
         MicrosoftLoginFragment fragment = (MicrosoftLoginFragment) getVisibleFragment(MicrosoftLoginFragment.TAG);
@@ -392,12 +393,9 @@ public class LauncherActivity extends BaseActivity {
                 return;
             }
         }
-
-        // Check if we are at the root then
         if(getVisibleFragment("ROOT") != null){
             finish();
         }
-
         super.onBackPressed();
     }
 
@@ -406,7 +404,6 @@ public class LauncherActivity extends BaseActivity {
         LauncherPreferences.computeNotchSize(this);
     }
 
-    @SuppressWarnings("SameParameterValue")
     private Fragment getVisibleFragment(String tag){
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
         if(fragment != null && fragment.isVisible()) {
@@ -415,7 +412,6 @@ public class LauncherActivity extends BaseActivity {
         return null;
     }
 
-    @SuppressWarnings("unused")
     private Fragment getVisibleFragment(int id){
         Fragment fragment = getSupportFragmentManager().findFragmentById(id);
         if(fragment != null && fragment.isVisible()) {
@@ -429,64 +425,52 @@ public class LauncherActivity extends BaseActivity {
             checkForNotificationPermission()) {
             return;
         }
-
-        if(ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS)) {
-            showNotificationPermissionReasoning();
-            return;
-        }
-        askForNotificationPermission(null);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return;
+        requestNotificationPermission(null);
     }
 
-    private void showNotificationPermissionReasoning() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.notification_permission_dialog_title)
-                .setMessage(R.string.notification_permission_dialog_text)
-                .setPositiveButton(android.R.string.ok, (d, w) -> askForNotificationPermission(null))
-                .setNegativeButton(android.R.string.cancel, (d, w)-> handleNoNotificationPermission())
-                .show();
+    private boolean checkForNotificationPermission() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true;
+        return ContextCompat.checkSelfPermission(this,
+                Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public void requestNotificationPermission(Runnable onAllowed) {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if(onAllowed != null) onAllowed.
+                    private void checkNotificationPermission() {
+        if(LauncherPreferences.PREF_SKIP_NOTIFICATION_PERMISSION_CHECK ||
+            checkForNotificationPermission()) {
+            return;
+        }
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return;
+        requestNotificationPermission(null);
+    }
+
+    private boolean checkForNotificationPermission() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true;
+        return ContextCompat.checkSelfPermission(this,
+                Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public void requestNotificationPermission(Runnable onAllowed) {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if(onAllowed != null) onAllowed.run();
+            return;
+        }
+        mRequestNotificationPermissionRunnable = new WeakReference<>(onAllowed);
+        mRequestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+    }
+
+    public void requestMicrophonePermission(Runnable onAllowed) {
+        mRequestMicrophonePermissionRunnable = new WeakReference<>(onAllowed);
+        mRequestMicrophonePermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
     }
 
     private void handleNoNotificationPermission() {
         LauncherPreferences.PREF_SKIP_NOTIFICATION_PERMISSION_CHECK = true;
         LauncherPreferences.DEFAULT_PREF.edit()
-                .putBoolean(LauncherPreferences.PREF_KEY_SKIP_NOTIFICATION_CHECK, true)
+                .putBoolean(LauncherPreferences.PREF_KEY_SKIP_NOTIFICATION_PERMISSION_CHECK, true)
                 .apply();
-        Toast.makeText(this, R.string.notification_permission_toast, Toast.LENGTH_LONG).show();
     }
-
-    public boolean checkForNotificationPermission() {
-        return Build.VERSION.SDK_INT < 33 || ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_DENIED;
-    }
-    public boolean checkForMicrophonePermission() {
-        return ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_DENIED;
-    }
-
-    public void askForNotificationPermission(Runnable onSuccessRunnable) {
-        if(Build.VERSION.SDK_INT < 33) return;
-        if(onSuccessRunnable != null) {
-            mRequestNotificationPermissionRunnable = new WeakReference<>(onSuccessRunnable);
-        }
-        mRequestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-    }
-
-    public void askForMicrophonePermission(Runnable onSuccessRunnable) {
-        if(onSuccessRunnable != null) {
-            mRequestMicrophonePermissionRunnable = new WeakReference<>(onSuccessRunnable);
-        }
-        mRequestMicrophonePermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
-    }
-
-    /** Stuff all the view boilerplate here */
-    private void bindViews(){
-        mFragmentView = findViewById(R.id.container_fragment);
-        mSettingsButton = findViewById(R.id.setting_button);
-        mAccountSpinner = findViewById(R.id.account_spinner);
-        mProgressLayout = findViewById(R.id.progress_layout);
-    }
-}
+            }
