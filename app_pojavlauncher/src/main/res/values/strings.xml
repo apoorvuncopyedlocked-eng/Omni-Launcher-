@@ -11,6 +11,7 @@
 
     <!-- Login strings -->
     <string name="login_online_login_label">Log in</string>
+    <string name="login_online_username_hint">Username</string>
 
     <!-- Hint -->
     <string name="hint_control_mapping">Hint: drag to map controls</string>
@@ -23,6 +24,7 @@
     <string name="toast_not_available_demo">Not available in demo mode</string>
     <string name="toast_turn_on_gyro">Turn on gyroscope</string>
     <string name="unnamed">Unnamed</string>
+    <string name="autoram_info_msg">Set RAM to %d MB</string>
 
     <!-- AlertDialog title -->
     <string name="alerttitle_installmod">Select a mod for installation</string>
@@ -99,6 +101,10 @@
     <string name="cropper_lock_horizontal">Lock horizontal</string>
     <string name="cropper_lock_vertical">Lock vertical</string>
     <string name="cropper_reset">Reset</string>
+    <string name="mcl_setting_title_grab_mouse">Virtual cursor</string>
+    <string name="mcl_setting_subtitle_grab_mouse">Keep the cursor inside the game. Prevents mouse clicks from reaching the touch control layout.</string>
+    <string name="mcl_setting_title_keyboard_panning">Keyboard panning</string>
+    <string name="mcl_setting_subtitle_keyboard_panning">Use the keyboard to pan the camera while in-game.</string>
 
     <!-- Global strings -->
     <string name="global_edit">Edit</string>
@@ -225,5 +231,23 @@
     <string name="newdl_downloading_metadata">Downloading metadata %s</string>
     <string name="download_source_default">Default</string>
     <string name="mcl_setting_title_mousescale">Mouse scale</string>
+
+    <string name="controller_button_select">Select</string>
+    <string name="controller_remapper_exit_part1">Hold</string>
+    <string name="controller_remapper_exit_part2">to exit</string>
+    <string name="controller_remapper_operating_mode">Current mode</string>
+    <string name="fabric_dl_loader_title">Select version</string>
+    <string name="fabric_dl_game_version">Minecraft version</string>
+    <string name="fabric_dl_loader_version">Loader version</string>
+    <string name="fabric_dl_only_stable">Only stable versions</string>
+    <string name="modloader_dl_failed_to_load_list">Failed to load version list!</string>
+    <string name="forge_dl_select_version">Select Forge version</string>
+    <string name="profiles_profile_name">Profile name</string>
+    <string name="profiles_latest_release">Latest release</string>
+    <string name="profiles_latest_snapshot">Latest snapshot</string>
+    <string name="preference_wipe_controller_title">Wipe controller settings</string>
+    <string name="pedit_java_runtime">Java runtime</string>
+    <string name="pedit_renderer">Renderer</string>
+    <string name="use_angle_checkbox">Use ANGLE</string>
 
 </resources>
