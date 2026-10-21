@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- App name part -->
-    <string name="Omni Launcher" translatable="false">Amethyst</string>
-
+    <string name="app_name" translatable="false">Omni Launcher</string>
     <!-- Action bar part -->
 
     <!-- Languages list part -->
