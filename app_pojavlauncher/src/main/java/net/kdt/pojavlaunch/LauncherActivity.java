@@ -421,41 +421,23 @@ public class LauncherActivity extends BaseActivity {
     }
 
     private void checkNotificationPermission() {
-        if(LauncherPreferences.PREF_SKIP_NOTIFICATION_PERMISSION_CHECK ||
-            checkForNotificationPermission()) {
+        if (LauncherPreferences.PREF_SKIP_NOTIFICATION_PERMISSION_CHECK ||
+                checkForNotificationPermission()) {
             return;
         }
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return;
         requestNotificationPermission(null);
     }
 
     private boolean checkForNotificationPermission() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true;
         return ContextCompat.checkSelfPermission(this,
                 Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
     }
 
     public void requestNotificationPermission(Runnable onAllowed) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            if(onAllowed != null) onAllowed.
-                    private void checkNotificationPermission() {
-        if(LauncherPreferences.PREF_SKIP_NOTIFICATION_PERMISSION_CHECK ||
-            checkForNotificationPermission()) {
-            return;
-        }
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return;
-        requestNotificationPermission(null);
-    }
-
-    private boolean checkForNotificationPermission() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true;
-        return ContextCompat.checkSelfPermission(this,
-                Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    public void requestNotificationPermission(Runnable onAllowed) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            if(onAllowed != null) onAllowed.run();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if (onAllowed != null) onAllowed.run();
             return;
         }
         mRequestNotificationPermissionRunnable = new WeakReference<>(onAllowed);
@@ -463,6 +445,10 @@ public class LauncherActivity extends BaseActivity {
     }
 
     public void requestMicrophonePermission(Runnable onAllowed) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            if (onAllowed != null) onAllowed.run();
+            return;
+        }
         mRequestMicrophonePermissionRunnable = new WeakReference<>(onAllowed);
         mRequestMicrophonePermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
     }
@@ -473,4 +459,4 @@ public class LauncherActivity extends BaseActivity {
                 .putBoolean(LauncherPreferences.PREF_KEY_SKIP_NOTIFICATION_PERMISSION_CHECK, true)
                 .apply();
     }
-            }
+}
